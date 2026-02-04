@@ -9,70 +9,67 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
 
 <style>
-body {
-    font-family: 'Inter', system-ui, sans-serif;
-    background: radial-gradient(circle at top, #eef2ff, #f8fafc);
-    color: #0f172a;
-}
+    body {
+        font-family: 'Inter', system-ui, sans-serif;
+        background: radial-gradient(circle at top, #eef2ff, #f8fafc);
+        color: #0f172a;
+    }
 
-.glass {
-    background: rgba(255,255,255,.65);
-    backdrop-filter: blur(18px);
-    border: 1px solid rgba(255,255,255,.35);
-}
+    .glass {
+        background: rgba(255,255,255,.65);
+        backdrop-filter: blur(18px);
+        border: 1px solid rgba(255,255,255,.35);
+    }
 
-.card-hover:active { transform: scale(.97); }
+    .card-hover:active { transform: scale(.97); }
 
-.fade {
-    animation: fade .35s ease;
-}
+    .fade { animation: fade .35s ease; }
+    @keyframes fade {
+        from { opacity: 0; transform: translateY(12px); }
+        to { opacity: 1; transform: none; }
+    }
 
-@keyframes fade {
-    from { opacity: 0; transform: translateY(12px); }
-    to { opacity: 1; transform: none; }
-}
+    .dot {
+        width: 5px; height: 5px; background: #6366f1;
+        border-radius: 999px; margin: 4px auto 0; opacity: 0;
+    }
+    .tab-active .dot { opacity: 1; }
+    .tab-active { opacity: 1 !important; transform: translateY(-2px); }
 
-.tab-active span { opacity: 1 !important; }
-.tab-active .dot { opacity: 1; }
+    .no-scrollbar::-webkit-scrollbar { display: none; }
+    .story-ring { border: 2px solid #6366f1; padding: 2px; transition: 0.3s; }
+    .story-ring:active { transform: scale(0.9); }
 
-.dot {
-    width: 5px; height: 5px; background: #6366f1;
-    border-radius: 999px; margin-top: 4px; opacity: 0;
-}
+    /* ТИМЧАСОВА ШКАЛА */
+    .timeline-dot { position: absolute; left: -21px; top: 4px; width: 12px; height: 12px; border-radius: 50%; background: #6366f1; border: 2px solid white; box-shadow: 0 0 8px rgba(99,102,241,0.5); }
+    .timeline-line { border-left: 2px solid #e0e7ff; margin-left: 10px; padding-left: 25px; position: relative; }
 
-.no-scrollbar::-webkit-scrollbar { display: none; }
-.story-ring { border: 2px solid #6366f1; padding: 2px; }
-
-/* ТИМЧАСОВА ШКАЛА */
-.timeline-dot { position: absolute; left: -21px; top: 4px; width: 12px; height: 12px; border-radius: 50%; background: #6366f1; border: 2px solid white; box-shadow: 0 0 8px rgba(99,102,241,0.5); }
-.timeline-line { border-left: 2px solid #e0e7ff; margin-left: 10px; padding-left: 25px; position: relative; }
-
-/* МЕГА-СТИЛІ ДЛЯ ДЕРЕВА */
-.tree-line-v { width: 2px; background: linear-gradient(to bottom, #cbd5e1, #6366f1, #4f46e5); margin: 0 auto; }
-.tree-node-main { 
-    background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
-    box-shadow: 0 20px 40px -10px rgba(79, 70, 229, 0.5);
-    border: 3px solid white;
-}
-.family-card {
-    background: rgba(255,255,255,0.8);
-    border: 1px solid white;
-    box-shadow: 0 10px 15px -3px rgba(0,0,0,0.05);
-}
+    /* МЕГА-СТИЛІ ДЛЯ ДЕРЕВА */
+    .tree-line-v { width: 2px; background: linear-gradient(to bottom, #cbd5e1, #6366f1, #4f46e5); margin: 0 auto; }
+    .tree-node-main { 
+        background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+        box-shadow: 0 20px 40px -10px rgba(79, 70, 229, 0.5);
+        border: 3px solid white;
+    }
+    .family-card {
+        background: rgba(255,255,255,0.9);
+        border: 1px solid white;
+        box-shadow: 0 10px 15px -3px rgba(0,0,0,0.05);
+        transition: 0.3s;
+    }
+    .family-card:hover { transform: translateY(-2px); border-color: #6366f1; }
 </style>
 </head>
 
 <body>
 
-<div class="max-w-[430px] mx-auto min-h-screen pb-32">
+<div class="max-w-[430px] mx-auto min-h-screen pb-32 overflow-x-hidden">
 
 <header class="sticky top-0 z-50 glass px-6 py-4 flex justify-between items-center">
     <h1 class="font-extrabold text-xl bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">
         TheLocals
     </h1>
-    <span class="text-xs font-semibold text-indigo-600 bg-indigo-100 px-3 py-1 rounded-full uppercase">
-        Mallow
-    </span>
+    <span class="text-xs font-semibold text-indigo-600 bg-indigo-100 px-3 py-1 rounded-full uppercase">Mallow</span>
 </header>
 
 <main id="home" class="p-5 space-y-6 fade">
@@ -81,21 +78,21 @@ body {
     <div class="flex gap-4 overflow-x-auto no-scrollbar py-2">
         <div class="flex-shrink-0 text-center w-16 cursor-pointer" onclick="openPage('church')">
             <div class="w-16 h-16 rounded-full story-ring mb-1">
-                <img src="https://www.churchservices.tv/wp-content/uploads/2019/02/churchstmarysmallow-1024x576.png" class="rounded-full w-full h-full object-cover">
+                <img src="https://images.unsplash.com/photo-1548705085-101177834f47?auto=format&fit=crop&q=80&w=200" class="rounded-full w-full h-full object-cover">
             </div>
-            <span class="text-[10px] font-bold text-gray-600">Altar</span>
+            <span class="text-[10px] font-bold text-gray-600 uppercase">Altar</span>
         </div>
         <div class="flex-shrink-0 text-center w-16 cursor-pointer" onclick="openPage('davis')">
             <div class="w-16 h-16 rounded-full story-ring mb-1 border-orange-400">
                 <img src="https://upload.wikimedia.org/wikipedia/commons/9/96/Thomas_Davis_Young_Irelander.JPG" class="rounded-full w-full h-full object-cover">
             </div>
-            <span class="text-[10px] font-bold text-gray-600">Poetry</span>
+            <span class="text-[10px] font-bold text-gray-600 uppercase">Poetry</span>
         </div>
         <div class="flex-shrink-0 text-center w-16 cursor-pointer" onclick="openPage('memorial')">
             <div class="w-16 h-16 rounded-full story-ring mb-1 border-red-400">
-                <img src="https://irishwarmemorials.ie/wp-content/uploads/2023/12/0808.1.jpg" class="rounded-full w-full h-full object-cover">
+                <img src="https://images.unsplash.com/photo-1510414842594-a61c69b5ae57?auto=format&fit=crop&q=80&w=200" class="rounded-full w-full h-full object-cover">
             </div>
-            <span class="text-[10px] font-bold text-gray-600">Memorial</span>
+            <span class="text-[10px] font-bold text-gray-600 uppercase">Memorial</span>
         </div>
     </div>
 </section>
@@ -109,7 +106,7 @@ body {
     <div class="flex items-center gap-5">
         <img src="https://upload.wikimedia.org/wikipedia/commons/9/96/Thomas_Davis_Young_Irelander.JPG" class="w-20 h-20 rounded-2xl object-cover shadow-lg">
         <div>
-            <span class="text-[10px] font-bold text-orange-600 bg-orange-100 px-2 py-0.5 rounded uppercase tracking-tighter">Patriot Poet</span>
+            <span class="text-[10px] font-bold text-orange-600 bg-orange-100 px-2 py-0.5 rounded uppercase">Patriot Poet</span>
             <h3 class="text-xl font-bold uppercase tracking-tight">Thomas Davis</h3>
             <p class="text-xs text-gray-400 font-medium italic">"A Nation Once Again"</p>
         </div>
@@ -128,25 +125,13 @@ body {
     </div>
 </div>
 
-<div onclick="openPage('memorial')" class="glass rounded-[2.5rem] overflow-hidden shadow-xl card-hover cursor-pointer">
-    <img src="https://irishwarmemorials.ie/wp-content/uploads/2023/12/0808.1.jpg" class="h-64 w-full object-cover">
-    <div class="p-6">
-        <h3 class="text-2xl font-bold tracking-tight">War Memorial</h3>
-        <p class="text-gray-500 text-sm">Honoring the fallen heroes of Mallow</p>
-        <div class="flex gap-4 mt-4 text-[10px] font-bold uppercase text-red-500 tracking-widest">
-            <span>🎥 Video Story</span>
-            <span>📍 Town Park</span>
-        </div>
-    </div>
-</div>
-
 </main>
 
 <section id="davis" class="hidden fade">
     <div class="relative">
         <img src="https://upload.wikimedia.org/wikipedia/commons/9/96/Thomas_Davis_Young_Irelander.JPG" class="h-[440px] w-full object-cover">
         <div class="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-[#f8fafc] to-transparent"></div>
-        <button onclick="openPage('home')" class="absolute top-6 left-6 glass w-10 h-10 rounded-full flex items-center justify-center font-bold">←</button>
+        <button onclick="openPage('home')" class="absolute top-6 left-6 glass w-10 h-10 rounded-full flex items-center justify-center font-bold shadow-lg">←</button>
     </div>
 
     <div class="p-8 -mt-16 relative space-y-12">
@@ -156,68 +141,55 @@ body {
             <p class="text-gray-400 font-bold italic text-sm">1814 — 1845</p>
         </div>
 
-        <div class="space-y-6">
+        <div class="space-y-8">
             <p class="text-[10px] font-black text-gray-400 uppercase tracking-[0.2em] text-center">🌳 The Lineage Tree</p>
             
             <div class="relative py-4 flex flex-col items-center">
-                <div class="flex justify-between w-full max-w-[320px] mb-6">
-                    <div class="family-card p-3 rounded-2xl w-20 text-center">
-                        <p class="text-[6px] font-bold text-gray-400 uppercase">Grandfather</p>
-                        <p class="text-[8px] font-black text-slate-700">James Davis Sr.</p>
+                <div class="grid grid-cols-2 gap-20 mb-6 relative">
+                    <div class="family-card p-3 rounded-2xl w-24 text-center">
+                        <p class="text-[6px] font-bold text-indigo-400 uppercase">Grandfather</p>
+                        <p class="text-[9px] font-black text-slate-700 leading-tight">James Davis Sr.</p>
                     </div>
-                    <div class="family-card p-3 rounded-2xl w-20 text-center">
-                        <p class="text-[6px] font-bold text-gray-400 uppercase">Grandmother</p>
-                        <p class="text-[8px] font-black text-slate-700">Mary Atkins Sr.</p>
-                    </div>
-                </div>
-
-                <div class="tree-line-v h-6 opacity-30 mb-2"></div>
-
-                <div class="flex justify-around w-full relative mb-8">
-                    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 w-48 h-[1px] bg-indigo-100 -z-10"></div>
-                    
-                    <div class="family-card p-4 rounded-[2rem] w-28 text-center border-2 border-indigo-50 shadow-md">
-                        <p class="text-[7px] font-black text-indigo-500 uppercase">Father</p>
-                        <p class="text-[11px] font-black text-slate-800 uppercase tracking-tighter">James Davis</p>
-                        <p class="text-[7px] text-gray-400 italic">Royal Artillery</p>
-                    </div>
-                    
-                    <div class="family-card p-4 rounded-[2rem] w-28 text-center border-2 border-pink-50 shadow-md">
-                        <p class="text-[7px] font-black text-pink-500 uppercase">Mother</p>
-                        <p class="text-[11px] font-black text-slate-800 uppercase tracking-tighter">Mary Atkins</p>
-                        <p class="text-[7px] text-gray-400 italic">Mallow Native</p>
+                    <div class="family-card p-3 rounded-2xl w-24 text-center">
+                        <p class="text-[6px] font-bold text-pink-400 uppercase">Grandmother</p>
+                        <p class="text-[9px] font-black text-slate-700 leading-tight">Mary Atkins Sr.</p>
                     </div>
                 </div>
 
-                <div class="tree-line-v h-12 w-[3px] shadow-[0_0_15px_rgba(99,102,241,0.4)] mb-4"></div>
+                <div class="tree-line-v h-6 opacity-30"></div>
 
-                <div class="text-center relative">
-                    <div class="tree-node-main w-36 h-36 rounded-[3.5rem] text-white flex flex-col items-center justify-center p-4 active:scale-95 transition-transform cursor-pointer relative z-10">
+                <div class="flex justify-around w-full relative my-4">
+                    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 w-48 h-[2px] bg-gradient-to-r from-indigo-100 via-indigo-400 to-indigo-100 -z-10"></div>
+                    
+                    <div class="family-card p-4 rounded-[2rem] w-32 text-center border-2 border-indigo-100 shadow-md">
+                        <p class="text-[8px] font-black text-indigo-500 uppercase mb-1">Father</p>
+                        <p class="text-[11px] font-black text-slate-800 uppercase leading-none mb-1">James Davis</p>
+                        <p class="text-[8px] text-gray-400 italic font-medium">Surgeon, RA</p>
+                    </div>
+                    
+                    <div class="family-card p-4 rounded-[2rem] w-32 text-center border-2 border-pink-100 shadow-md">
+                        <p class="text-[8px] font-black text-pink-500 uppercase mb-1">Mother</p>
+                        <p class="text-[11px] font-black text-slate-800 uppercase leading-none mb-1">Mary Atkins</p>
+                        <p class="text-[8px] text-gray-400 italic font-medium">Mallow Native</p>
+                    </div>
+                </div>
+
+                <div class="tree-line-v h-12 w-[3px] shadow-[0_0_15px_rgba(99,102,241,0.4)]"></div>
+
+                <div class="text-center relative mt-2">
+                    <div class="tree-node-main w-40 h-40 rounded-[4rem] text-white flex flex-col items-center justify-center p-4 active:scale-95 transition-all cursor-pointer relative z-10">
                         <span class="text-[8px] font-black uppercase tracking-[0.2em] mb-2 opacity-80">Young Irelander</span>
-                        <span class="text-xl font-black uppercase leading-none text-center tracking-tighter">Thomas<br>Davis</span>
-                        <div class="w-8 h-0.5 bg-white/30 my-3"></div>
-                        <span class="text-[10px] font-bold tracking-widest">THE POET</span>
+                        <span class="text-2xl font-black uppercase leading-none text-center tracking-tighter">Thomas<br>Davis</span>
+                        <div class="w-10 h-0.5 bg-white/30 my-4"></div>
+                        <span class="text-[10px] font-bold tracking-[0.3em]">THE POET</span>
                     </div>
-                    <div class="absolute inset-0 bg-indigo-500 blur-[45px] -z-10 opacity-30"></div>
+                    <div class="absolute inset-0 bg-indigo-500 blur-[50px] -z-10 opacity-40 animate-pulse"></div>
                 </div>
             </div>
         </div>
 
-        <div class="glass p-6 rounded-[2.5rem] border-orange-100 bg-orange-50/30 leading-relaxed text-sm text-gray-700 italic border-l-8 border-orange-400">
-            "Educate that you may be free." — One of the main organizers of the <strong>Young Ireland</strong> movement. His songs still echo through the streets of Mallow today.
-        </div>
-
-        <div class="grid grid-cols-2 gap-4">
-            <div class="glass p-5 rounded-3xl text-center shadow-sm">
-                <span class="text-2xl block mb-2">✍️</span>
-                <p class="text-[10px] font-black uppercase tracking-widest text-gray-400">Literature</p>
-                <p class="font-bold text-xs mt-1 leading-tight">Founded 'The Nation'</p>
-            </div>
-            <div class="glass p-5 rounded-3xl text-center shadow-sm">
-                <span class="text-2xl block mb-2">☘️</span>
-                <p class="text-[10px] font-black uppercase tracking-widest text-gray-400">Legacy</p>
-                <p class="font-bold text-xs mt-1 leading-tight">National Anthem Spirit</p>
-            </div>
+        <div class="glass p-6 rounded-[2.5rem] border-orange-100 bg-orange-50/40 leading-relaxed text-sm text-gray-700 italic border-l-8 border-orange-400">
+            "Educate that you may be free." — Davis was the heart of the <strong>Young Ireland</strong> movement. His passion transformed Irish identity forever.
         </div>
     </div>
 </section>
@@ -228,65 +200,48 @@ body {
         <button onclick="openPage('home')" class="absolute top-6 left-6 glass w-10 h-10 rounded-full flex items-center justify-center font-bold">←</button>
     </div>
     <div class="glass p-8 -mt-16 rounded-t-[3rem] space-y-8">
-        <div>
-            <h2 class="text-3xl font-black uppercase tracking-tighter">St. Mary’s Church</h2>
-            <p class="text-indigo-600 font-bold text-xs uppercase tracking-widest">Heritage Site & Parish</p>
-        </div>
+        <h2 class="text-3xl font-black uppercase tracking-tighter">St. Mary’s Church</h2>
 
-        <div class="space-y-3">
+        <div class="space-y-4">
             <p class="text-[10px] font-black text-gray-400 uppercase tracking-[0.2em]">🎧 Audio Experience</p>
-            <div class="glass p-4 rounded-3xl flex items-center gap-4 bg-indigo-50/50 border-indigo-100">
-                <button class="w-10 h-10 bg-indigo-600 text-white rounded-full shadow-lg active:scale-90">▶</button>
-                <div class="flex-1 text-sm font-bold">Track 1: Architectural Secrets</div>
-                <span class="text-[10px] text-gray-400 font-mono">2:45</span>
-            </div>
-            <div class="glass p-4 rounded-3xl flex items-center gap-4 opacity-50">
-                <button class="w-10 h-10 bg-gray-400 text-white rounded-full">▶</button>
-                <div class="flex-1 text-sm font-bold">Track 2: Great Famine Legacy</div>
-                <span class="text-[10px] text-gray-400 font-mono">4:12</span>
+            <div class="glass p-5 rounded-[2rem] flex items-center gap-4 bg-indigo-50/50 border-indigo-100">
+                <audio id="audioTrack" src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"></audio>
+                <button id="audioBtn" onclick="toggleAudio()" class="w-14 h-14 bg-indigo-600 text-white rounded-full shadow-lg flex items-center justify-center text-xl transition-all active:scale-90">▶</button>
+                <div class="flex-1">
+                    <p class="text-sm font-bold text-indigo-900">Architectural Secrets</p>
+                    <p class="text-[10px] text-gray-400 uppercase font-black tracking-tighter">Narrated by Sean O'Connor</p>
+                </div>
             </div>
         </div>
 
-        <div class="space-y-6">
-            <p class="text-[10px] font-black text-gray-400 uppercase tracking-[0.2em]">⏳ Historical Journey</p>
-            <div class="timeline-line space-y-8">
-                <div class="relative">
-                    <div class="timeline-dot"></div>
-                    <p class="text-sm font-black text-indigo-900 leading-none">1818 — The Beginning</p>
-                    <p class="text-xs text-gray-500 mt-2">Foundation of the original parish structure.</p>
-                </div>
-                <div class="relative">
-                    <div class="timeline-dot"></div>
-                    <p class="text-sm font-black text-indigo-900 leading-none">Modern Day — Conservation</p>
-                    <p class="text-xs text-gray-500 mt-2 leading-relaxed">Continuous restoration of Gothic stained glass.</p>
-                </div>
-            </div>
+        <div class="timeline-line space-y-8">
+            <div class="relative"><div class="timeline-dot"></div><p class="text-sm font-black text-indigo-900">1818 — Foundation</p><p class="text-xs text-gray-500">The church was built in Gothic Revival style.</p></div>
+            <div class="relative"><div class="timeline-dot"></div><p class="text-sm font-black text-indigo-900">1840 — Stained Glass</p><p class="text-xs text-gray-500">Installation of the famous East Window.</p></div>
         </div>
     </div>
 </section>
 
 <section id="memorial" class="hidden fade">
     <div class="relative">
-        <img src="https://irishwarmemorials.ie/wp-content/uploads/2023/12/0808.1.jpg" class="h-80 w-full object-cover">
+        <img src="https://images.unsplash.com/photo-1510414842594-a61c69b5ae57?auto=format&fit=crop&q=80&w=800" class="h-64 w-full object-cover">
         <button onclick="openPage('home')" class="absolute top-6 left-6 glass w-10 h-10 rounded-full flex items-center justify-center font-bold">←</button>
     </div>
-    <div class="glass p-8 -mt-16 rounded-t-[3rem] space-y-6">
+    <div class="glass p-8 -mt-12 rounded-t-[3rem] space-y-6">
         <h2 class="text-3xl font-black uppercase tracking-tighter">War Memorial</h2>
-        <p class="text-red-600 uppercase text-[10px] font-black tracking-[0.3em]">Mallow Town Park • Heritage</p>
+        <p class="text-red-600 text-[10px] font-black uppercase tracking-widest">Digital Storytelling</p>
 
-        <div class="aspect-video bg-indigo-900/10 border-2 border-dashed border-indigo-200 rounded-[2.5rem] flex flex-col items-center justify-center text-indigo-400 italic gap-2 group cursor-pointer active:scale-95 transition">
-            <span class="text-3xl group-hover:scale-125 transition">🎥</span>
-            <span class="text-[10px] font-bold uppercase tracking-widest">Video Story Loading...</span>
+        <div class="aspect-video w-full rounded-[2.5rem] overflow-hidden shadow-2xl border-4 border-white">
+            <iframe class="w-full h-full" src="https://www.youtube.com/embed/fD39V07-f-M" title="Mallow History" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
 
         <p class="text-gray-600 leading-relaxed text-sm italic">
-            "This memorial stands as a solemn tribute to the local volunteers and soldiers."
+            "A tribute to those who left Mallow to fight, and those who never returned."
         </p>
 
-        <div onclick="openPage('profile')" class="mt-8 flex items-center glass p-5 rounded-[2rem] cursor-pointer border-white shadow-sm active:scale-95 transition">
-            <img src="https://i.pravatar.cc/100?u=sean" class="w-12 h-12 rounded-full border-2 border-white shadow-md">
+        <div onclick="openPage('profile')" class="flex items-center glass p-5 rounded-[2rem] shadow-sm active:scale-95 transition cursor-pointer">
+            <img src="https://i.pravatar.cc/100?u=sean" class="w-12 h-12 rounded-full border-2 border-indigo-200">
             <div class="ml-4">
-                <p class="text-[8px] uppercase font-black text-gray-400 tracking-widest">Storyteller</p>
+                <p class="text-[8px] uppercase font-black text-gray-400 tracking-widest">Researcher</p>
                 <p class="font-bold text-indigo-900">Sean O’Connor</p>
             </div>
             <span class="ml-auto text-indigo-400">→</span>
@@ -295,52 +250,69 @@ body {
 </section>
 
 <section id="profile" class="hidden fade p-8 text-center space-y-8">
-    <button onclick="openPage('home')" class="glass w-12 h-12 rounded-full flex items-center justify-center font-bold mx-auto">←</button>
-    <img src="https://i.pravatar.cc/150?u=sean" class="w-32 h-32 rounded-[2.5rem] mx-auto shadow-2xl border-4 border-white">
+    <button onclick="openPage('home')" class="glass w-12 h-12 rounded-full flex items-center justify-center font-bold mx-auto shadow-md">←</button>
+    <div class="relative inline-block">
+        <img src="https://i.pravatar.cc/150?u=sean" class="w-32 h-32 rounded-[2.5rem] mx-auto shadow-2xl border-4 border-white">
+        <div class="absolute -bottom-2 -right-2 bg-green-500 w-8 h-8 rounded-full border-4 border-white flex items-center justify-center text-[10px] text-white">✓</div>
+    </div>
     <div>
         <h2 class="text-3xl font-black tracking-tight">Sean O’Connor</h2>
-        <p class="text-indigo-500 font-bold text-xs uppercase tracking-widest mt-1">Local Historian • Mallow</p>
+        <p class="text-indigo-500 font-bold text-xs uppercase tracking-[0.2em] mt-2">Mallow Historian</p>
     </div>
 
     <div class="flex gap-4">
-        <div class="flex-1 glass p-5 rounded-3xl shadow-sm">
-            <p class="text-2xl font-black text-indigo-600">14</p>
-            <p class="text-[9px] uppercase font-bold text-gray-400 tracking-tighter">Verified Stories</p>
-        </div>
-        <div class="flex-1 glass p-5 rounded-3xl shadow-sm">
-            <p class="text-2xl font-black text-indigo-600">1.2k</p>
-            <p class="text-[9px] uppercase font-bold text-gray-400 tracking-tighter">Community Impact</p>
-        </div>
+        <div class="flex-1 glass p-5 rounded-3xl"><p class="text-2xl font-black text-indigo-600">14</p><p class="text-[9px] uppercase font-bold text-gray-400">Stories</p></div>
+        <div class="flex-1 glass p-5 rounded-3xl"><p class="text-2xl font-black text-indigo-600">1.2k</p><p class="text-[9px] uppercase font-bold text-gray-400">Impact</p></div>
     </div>
 
-    <button class="w-full bg-indigo-600 text-white py-5 rounded-[2rem] font-black uppercase tracking-widest shadow-xl shadow-indigo-200 active:scale-95 transition-transform">
-        Follow Creator
-    </button>
+    <button class="w-full bg-indigo-600 text-white py-5 rounded-[2rem] font-black uppercase tracking-widest shadow-xl active:scale-95 transition-all">Support Historian</button>
 </section>
 
 <nav class="fixed bottom-6 left-1/2 -translate-x-1/2 glass px-8 py-4 rounded-[2.5rem] flex gap-8 shadow-2xl z-50 border-white/50">
-    <button onclick="openPage('home')" class="tab tab-active transition-all"><span class="text-2xl">🏛️</span><div class="dot mx-auto"></div></button>
-    <button class="tab opacity-40 text-2xl">🗺️</button>
+    <button onclick="openPage('home')" class="tab tab-active transition-all" id="tab-home"><span class="text-2xl">🏛️</span><div class="dot"></div></button>
+    <button class="tab opacity-40 text-2xl transition-all">🗺️</button>
     <button class="w-14 h-14 bg-black text-white rounded-full text-2xl flex items-center justify-center shadow-2xl -mt-10 border-4 border-white active:scale-90 transition-all">+</button>
-    <button class="tab opacity-40 text-2xl">🔔</button>
-    <button onclick="openPage('profile')" class="tab opacity-40 text-2xl">👤</button>
+    <button class="tab opacity-40 text-2xl transition-all">🔔</button>
+    <button onclick="openPage('profile')" class="tab opacity-40 transition-all" id="tab-profile"><span class="text-2xl">👤</span><div class="dot"></div></button>
 </nav>
 
 </div>
 
 <script>
-function openPage(id) {
-    document.querySelectorAll('main, section').forEach(p => p.classList.add('hidden'));
-    const target = document.getElementById(id);
-    if (target) target.classList.remove('hidden');
-    
-    // UI update for nav tabs
-    document.querySelectorAll('.tab').forEach(t => t.classList.add('opacity-40'));
-    document.querySelectorAll('.tab').forEach(t => t.classList.remove('tab-active'));
-    
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-    if (navigator.vibrate) navigator.vibrate(15);
-}
+    function openPage(id) {
+        document.querySelectorAll('main, section').forEach(p => p.classList.add('hidden'));
+        const target = document.getElementById(id);
+        if (target) target.classList.remove('hidden');
+
+        // Оновлення активних табів
+        document.querySelectorAll('.tab').forEach(t => t.classList.remove('tab-active', 'opacity-100'));
+        document.querySelectorAll('.tab').forEach(t => t.classList.add('opacity-40'));
+
+        if (id === 'home') document.getElementById('tab-home').classList.add('tab-active');
+        if (id === 'profile') document.getElementById('tab-profile').classList.add('tab-active');
+        
+        // Зупинка аудіо при зміні сторінки
+        const audio = document.getElementById('audioTrack');
+        audio.pause();
+        document.getElementById('audioBtn').innerText = '▶';
+
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        if (navigator.vibrate) navigator.vibrate(10);
+    }
+
+    function toggleAudio() {
+        const audio = document.getElementById('audioTrack');
+        const btn = document.getElementById('audioBtn');
+        if (audio.paused) {
+            audio.play();
+            btn.innerText = '⏸';
+            btn.classList.add('bg-indigo-400');
+        } else {
+            audio.pause();
+            btn.innerText = '▶';
+            btn.classList.remove('bg-indigo-400');
+        }
+    }
 </script>
 
 </body>
